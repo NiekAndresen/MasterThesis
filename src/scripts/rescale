@@ -1,0 +1,8 @@
+#!/bin/bash
+# rescale all images in the current directory (from where this is called) to __x__ pixels.
+
+#to convert e.g. .jpeg to .jpg:
+#mogrify -format jpg *.jpeg
+
+#mogrify -resize '640x640' * #keeps aspect ratio
+ls -1 *.jpg | parallel convert '{}' -resize "800x800^" -gravity center -crop 800x800+0+0 +repage '{.}.jpg' #or '{.}_rescaled.jpg'
